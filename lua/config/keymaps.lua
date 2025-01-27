@@ -20,3 +20,16 @@ vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianFollowLink<CR>", { desc = "Follo
 vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Open Backlinks Picker" })
 vim.keymap.set("n", "<leader>ol", "<cmd>ObsidianLink<CR>", { desc = "Links selected text to a note" })
 vim.keymap.set("n", "<leader>oe", "<cmd>ObsidianExtractNote<CR>", { desc = "Extracts selected text into new note" })
+
+------- Molten (Jupyter)
+vim.keymap.set("n", "<leader>mi", ":MoltenInit<CR>")
+vim.keymap.set(
+    "v",
+    "<leader>mv",
+    ":<C-u>MoltenEvaluateVisual<CR>",
+    { silent = true, desc = "evaluate visual selection" }
+)
+vim.keymap.set("n", "<leader>mr", ":MoltenReevaluateCell<CR>", { silent = true, desc = "re-evaluate cell" })
+vim.keymap.set("n", "<leader>mo", ":MoltenShowOutput<CR>", { silent = true, desc = "show output" })
+vim.keymap.set("n", "<leader>mo", ":MoltenEvaluateOperator<CR>", { silent = true, desc = "run operator selection" })
+vim.keymap.set("n", "<leader>me", ":MoltenEvaluateLine<CR>", { silent = true, desc = "evaluate line" })
