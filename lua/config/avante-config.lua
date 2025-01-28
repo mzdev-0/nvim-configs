@@ -206,7 +206,7 @@ M._defaults = {
         ---@alias AvantePosition "right" | "left" | "top" | "bottom" | "smart"
         position = "right",
         wrap = true, -- similar to vim.o.wrap
-        width = 30, -- default % based on available width in vertical layout
+        width = 20, -- default % based on available width in vertical layout
         height = 30, -- default % based on available height in horizontal layout
         sidebar_header = {
             enabled = true, -- true, false to enable/disable the header
@@ -219,7 +219,7 @@ M._defaults = {
         },
         edit = {
             border = "rounded",
-            start_insert = true, -- Start insert mode when opening the edit window
+            start_insert = false, -- Start insert mode when opening the edit window
         },
         ask = {
             floating = false, -- Open the 'AvanteAsk' prompt in a floating window
