@@ -1,4 +1,24 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
---
+vim.opt.autowrite = true
+vim.opt.clipboard = "unnamedplus"
+vim.opt.cursorline = true -- check if works
+vim.opt.confirm = true
+vim.opt.expandtab = true
+vim.opt.foldlevel = 99
+vim.opt.jumpoptions = "view"
+vim.opt.laststatus = 3 --global statusline
+vim.opt.relativenumber = true --relative line numbers
+vim.opt.shiftround = true --round indent
+vim.opt.shiftwidth = 2 --indent size
+vim.opt.smartindent = true -- insert indents automatically --check
+vim.opt.splitbelow = true --put new windows below current
+vim.opt.splitkeep = "screen"
+vim.opt.splitright = true -- put new windows right of current
+vim.opt.tabstop = 2 -- number of spaces tabs count for
+vim.opt.termguicolors = true -- true color support
+vim.opt.undofile = true
+vim.opt.undolevels = 10000
+vim.updatetime = 200
+vim.opt.virtualedit = "block" -- allow cursor to move where there is no text in visual block mode
+vim.opt.winminwidth = 5 -- min window width
+vim.opt.smoothscroll = true
+

@@ -1,50 +1,68 @@
-local function custom_on_attach(client, bufnr)
-    require("lazyvim.util").on_attach(client, bufnr)
-    require("config.diagnostics").setup()
-end
+-- lua/plugins/lsp.lua (separate config file)
 return {
-    {
-        "neovim/nvim-lspconfig",
-        opts = {
-            servers = {
-                pyright = { -- Primary for LangChain type checking
-                    settings = {
-                        python = {
-                            pythonPath = vim.fn.trim(vim.fn.system("pyenv which python")),
-                            analysis = {
-                                extraPaths = {
-                                    vim.fn.system("pyenv prefix"):gsub("%s+", "")
-                                        .. "/lib/python"
-                                        .. vim.fn
-                                            .system(
-                                                [[python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')"]]
-                                            )
-                                            :gsub("%s+", "")
-                                        .. "/site-packages",
-                                },
-                                typeCheckingMode = "basic",
-                                diagnosticSeverityOverrides = {
-                                    reportMissingTypeStubs = "none", -- LangChain-specific quirk
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-            setup = {
-                pyright = function(_, opts)
-                    require("lspconfig").pyright.setup(opts)
-                end,
-                ["*"] = function(server, opts)
-                    opts.on_attach = function(client, bufnr)
-                        custom_on_attach(client, bufnr)
-                        if opts.setup and opts.setup.on_attach then
-                            opts.setup.on_attach(client, bufnr)
-                        end
-                    end
-                    return opts
-                end,
-            },
-        },
+  -- LSP Configuration
+  {
+    "neovim/nvim-lspconfig",
+    event = "BufReadPre",
+    dependencies = {
+      -- Mason integration
+      "williamboman/mason-lspconfig.nvim",
+      dependencies = {
+        "williamboman/mason.nvim",
+      },
+      config = function()
+        -- Auto-install these LSP servers (edit list as needed)
+        require("mason-lspconfig").setup({
+          ensure_installed = {
+            "lua_ls",       -- Lua
+            "pyright",      -- Python
+            "tsserver",     -- TypeScript/JavaScript
+            "rust_analyzer" -- Rust
+          },
+          -- Auto-configure installed LSPs
+          automatic_installation = true,
+        })
+        
+        -- Auto-setup LSP servers when they're installed
+        require("mason-lspconfig").setup_handlers({
+          function(server_name)
+            require("lspconfig")[server_name].setup({
+              -- Add common capabilities
+              capabilities = require("cmp_nvim_lsp").default_capabilities()
+            })
+          end,
+          -- Special config for specific servers
+          ["lua_ls"] = function()
+            require("lspconfig").lua_ls.setup({
+              settings = {
+                Lua = {
+                  diagnostics = { globals = { "vim" } },
+                  workspace = { checkThirdParty = false }
+                }
+              }
+            })
+          end
+        })
+      end
     },
+    config = function()
+      -- Common LSP keymaps (add these)
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          local buf = args.buf
+          
+          -- Enable formatting
+          if client.supports_method("textDocument/formatting") then
+            vim.keymap.set("n", "<leader>f", function()
+              vim.lsp.buf.format({ async = true })
+            end, { buffer = buf })
+          end
+
+          -- Hover documentation
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buf })
+        end
+      })
+    end
+  }
 }
