@@ -1,8 +1,8 @@
 vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = false }) -- Rebinds "jj" to Escape.
 vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true })
 -- Window Splitting
-vim.api.nvim_set_keymap("n", "<leader>ws", "<C-w>v", { desc = "Split window vertically" })
-vim.api.nvim_set_keymap("n", "<leader>wv", "<C-w>s", { desc = "Split window horizontally" })
+vim.api.nvim_set_keymap("n", "<leader>wv", "<C-w>v", { desc = "Split window vertically" })
+vim.api.nvim_set_keymap("n", "<leader>ws", "<C-w>s", { desc = "Split window horizontally" })
 vim.api.nvim_set_keymap("n", "<leader>we", "<C-w>=", { desc = "Make splits equal size" })
 vim.api.nvim_set_keymap("n", "<leader>wx", "<cmd>close<CR>", { desc = "Close current split" })
 
@@ -61,11 +61,11 @@ vim.keymap.set("n", "<leader>bo", "<cmd>%bd|e#|bd#<cr>", { desc = "Delete Other 
 
 vim.keymap.set("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
-vim.keymap.set({ "i", "n", "s" }, "<esc>", function()
-  vim.cmd("noh")
-  require('cmp').close()  -- Using nvim-cmp's native close
-  return "<esc>"
-end, { expr = true, desc = "Escape and Clear hlsearch" })
+--vim.keymap.set({ "i", "n", "s" }, "<esc>", function()
+--  vim.cmd("noh")
+--  require('cmp').close()  -- Using nvim-cmp's native close
+--  return "<esc>"
+--end, { expr = true, desc = "Escape and Clear hlsearch" })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua

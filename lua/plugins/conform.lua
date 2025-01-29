@@ -1,5 +1,6 @@
 return {
   'stevearc/conform.nvim',
+
   opts = {
     default_format_opts = {
       timeout_ms = 3000,
@@ -11,6 +12,15 @@ return {
       lua = { "stylua" },
       fish = { "fish_indent" },
       sh = { "shfmt" },
+      python = { "black" },
+      javascript = { "prettier" },
+      typescript = { "prettier" },
+      html = { "prettier" },
+      json = { "prettier" },
+      markdown = { "prettier" },
+      yaml = { "prettier" },
+      c = { "clang-format" },
+      cpp = { "clang-format" },
     },
     -- The options you set here will be merged with the builtin formatters.
     -- You can also define any custom formatters here.
@@ -28,6 +38,10 @@ return {
       -- shfmt = {
       --   prepend_args = { "-i", "2", "-ci" },
       -- },
+    },
+    format_on_save = {
+      timeout_ms = 500,
+      lsp_format = "fallback",
     },
   },
 }
