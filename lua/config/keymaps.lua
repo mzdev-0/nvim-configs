@@ -24,6 +24,7 @@ vim.keymap.set("n", "<leader>oe", "<cmd>ObsidianExtractNote<CR>", { desc = "Extr
 
 ------- Molten (Jupyter)
 vim.keymap.set("n", "<leader>mi", ":MoltenInit<CR>")
+vim.keymap.set("n", "<leader>mh", ":MoltenHideOutput<CR>")
 vim.keymap.set(
     "v",
     "<leader>mv",
@@ -70,10 +71,10 @@ vim.keymap.set("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Wi
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
 vim.keymap.set(
-  "n",
-  "<leader>ur",
-  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-  { desc = "Redraw / Clear hlsearch / Diff Update" }
+    "n",
+    "<leader>ur",
+    "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+    { desc = "Redraw / Clear hlsearch / Diff Update" }
 )
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
@@ -117,16 +118,16 @@ vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- Formatting
 vim.keymap.set({ "n", "v" }, "<leader>cf", function()
-  require('conform').format()
+    require("conform").format()
 end, { desc = "Format with Conform" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
-  end
+    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+    severity = severity and vim.diagnostic.severity[severity] or nil
+    return function()
+        go({ severity = severity })
+    end
 end
 vim.keymap.set("n", "<leader>cd", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document Diagnostics" })
 vim.keymap.set("n", "<leader>ud", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace Diagnostics" })
@@ -140,22 +141,22 @@ vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning
 -- Git Integrations
 vim.keymap.set("n", "<leader>gg", "<cmd>Git<cr>", { desc = "Fugitive Status" })
 vim.keymap.set("n", "<leader>gb", function()
-  require('gitsigns').blame_line({ full = true })
+    require("gitsigns").blame_line({ full = true })
 end, { desc = "Git Blame Line" })
 
 -- Toggle Options
 local toggles = {
-  s = { opt = 'spell', name = 'Spelling' },
-  w = { opt = 'wrap', name = 'Wrap' },
-  L = { opt = 'relativenumber', name = 'Relative Number' },
-  l = { opt = 'number', name = 'Line Numbers' },
+    s = { opt = "spell", name = "Spelling" },
+    w = { opt = "wrap", name = "Wrap" },
+    L = { opt = "relativenumber", name = "Relative Number" },
+    l = { opt = "number", name = "Line Numbers" },
 }
 
 for key, t in pairs(toggles) do
-  vim.keymap.set("n", "<leader>u"..key, function()
-    vim.o[t.opt] = not vim.o[t.opt]
-    vim.notify(t.name .. " " .. (vim.o[t.opt] and "ON" or "OFF"))
-  end, { desc = t.name })
+    vim.keymap.set("n", "<leader>u" .. key, function()
+        vim.o[t.opt] = not vim.o[t.opt]
+        vim.notify(t.name .. " " .. (vim.o[t.opt] and "ON" or "OFF"))
+    end, { desc = t.name })
 end
 
 -- quit
@@ -166,7 +167,9 @@ vim.keymap.set("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 vim.keymap.set("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
 -- LazyVim Changelog
-vim.keymap.set("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
+vim.keymap.set("n", "<leader>L", function()
+    LazyVim.news.changelog()
+end, { desc = "LazyVim Changelog" })
 
 -- Terminal
 vim.keymap.set("n", "<leader>ft", "<cmd>split | terminal<cr>", { desc = "Open Terminal" })
@@ -186,12 +189,12 @@ vim.keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous
 
 -- Treesitter
 vim.keymap.set("n", "<leader>uT", function()
-  local ts = require("nvim-treesitter.configs")
-  ts.toggle("highlight")
+    local ts = require("nvim-treesitter.configs")
+    ts.toggle("highlight")
 end, { desc = "Toggle Treesitter Highlight" })
 
 vim.keymap.set("n", "gcc", function()
-  require("ts-comments").toggle()
+    require("ts-comments").toggle()
 end, { desc = "Toggle Treesitter Comment" })
 
 -- Todo Comments
@@ -199,7 +202,7 @@ vim.keymap.set("n", "<leader>st", "<cmd>TodoTrouble<cr>", { desc = "Todo List (T
 
 -- Flash Navigation
 vim.keymap.set("n", "s", function()
-  require("flash").jump()
+    require("flash").jump()
 end, { desc = "Flash Jump" })
 
 -- Neo-tree
@@ -213,7 +216,5 @@ vim.keymap.set("n", "<leader>un", "<cmd>Noice dismiss<cr>", { desc = "Dismiss No
 
 -- Mini.ai
 vim.keymap.set({ "x", "o" }, "a", function()
-  require("mini.ai").find_textobj()
+    require("mini.ai").find_textobj()
 end, { desc = "Mini.ai text object" })
-
-
