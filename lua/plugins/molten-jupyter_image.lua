@@ -14,6 +14,7 @@ return {
             vim.g.molten_output_win_max_height = 400
             vim.g.molten_output_win_max_width = 400
             vim.g.molten_wrap_output = true
+            vim.g.molten_cover_empty_lines = false
         end,
     },
     {
