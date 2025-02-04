@@ -1,30 +1,40 @@
-return { 
-  {
-    "folke/snacks.nvim",
-    event = "VeryLazy",
-    opts = {
-      indent = { enabled = true }, input = { enabled = true },
-      notifier = { enabled = true },
-      scope = { enabled = true },
-      scroll = { enabled = true },
-      statuscolumn = { enabled = false }, -- we set this in options.lua
-      words = { enabled = true },
-    },
+return {
+    {
+        "folke/snacks.nvim",
+        event = "VeryLazy",
+        opts = {
+            indent = { enabled = true },
+            input = { enabled = true },
+            notifier = {
+                enabled = true,
+                win_config = {
+                    relative = "editor",
+                    anchor = "SW",
+                    row = -1,
+                    col = 0,
+                },
+                top_down = false,
+            },
+            scope = { enabled = true },
+            scroll = { enabled = true },
+            statuscolumn = { enabled = false }, -- we set this in options.lua
+            words = { enabled = true },
+        },
   -- stylua: ignore
     keys = {
       { "<leader>n", function() Snacks.notifier.show_history() end, desc = "Notification History" },
       { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
     },
-  },
-  {
-    "snacks.nvim",
-    opts = {
-      dashboard = {
-        preset = {
-          pick = function(cmd, opts)
-            return LazyVim.pick(cmd, opts)()
-          end,
-          header = [[
+    },
+    {
+        "snacks.nvim",
+        opts = {
+            dashboard = {
+                preset = {
+                    pick = function(cmd, opts)
+                        return LazyVim.pick(cmd, opts)()
+                    end,
+                    header = [[
           ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
           ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z    
           ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z       
@@ -45,9 +55,8 @@ return {
             { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
+                },
+            },
         },
-      },
     },
-  },
 }
-

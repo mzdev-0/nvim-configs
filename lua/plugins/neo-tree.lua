@@ -38,6 +38,41 @@ return {
                         end,
                         desc = "Open with System Application",
                     },
+                    ["<leader>wv"] = {
+                        command = function(state)
+                            local node = state.tree:get_node()
+                            if node.type == "file" then
+                                vim.cmd("vsplit " .. node.path)
+                                vim.api.nvim_win_set_config(0, { split = "left" })
+                            end
+                        end,
+                        desc = "Open in vertical split",
+                    },
+                    ["<leader>wh"] = function(state)
+                        local node = state.tree:get_node()
+                        if node.type == "file" then
+                            -- Find the main editor window (non-NeoTree window)
+                            local main_win = nil
+                            for _, win in ipairs(vim.api.nvim_list_wins()) do
+                                local buf = vim.api.nvim_win_get_buf(win)
+                                local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+                                if ft ~= "neo-tree" then
+                                    main_win = win
+                                    break
+                                end
+                            end
+
+                            if main_win then
+                                -- Switch to the main editor window
+                                vim.api.nvim_set_current_win(main_win)
+                                -- Open the file in a horizontal split
+                                vim.cmd("split " .. node.path)
+                            else
+                                -- Fallback: Open in the current window
+                                vim.cmd("split " .. node.path)
+                            end
+                        end
+                    end,
                     ["P"] = { "toggle_preview", config = { use_float = false } },
                 },
             },
