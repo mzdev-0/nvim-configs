@@ -4,13 +4,37 @@ return {
     lazy = false,
     version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
     opts = {
-        provider = "openrouter",
+        provider = "gemini-chat",
+        auto_suggestions_provider = "gemini",
+        gemini = {
+            model = "gemini-2.0-flash-thinking-exp-01-21",
+            safety_settings = {
+                {
+                    category = "HARM_CATEGORY_HARASSMENT",
+                    threshold = "OFF",
+                },
+                {
+                    category = "HARM_CATEGORY_DANGEROUS_CONTENT",
+                    threshold = "OFF",
+                },
+                {
+                    category = "HARM_CATEGORY_HATE_SPEECH",
+                    threshold = "OFF",
+                },
+                {
+                    category = "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                    threshold = "OFF",
+                },
+                {
+                    category = "HARM_CATEGORY_CIVIC_INTEGRITY",
+                    threshold = "OFF",
+                },
+            },
+        },
         vendors = {
-            openrouter = {
-                __inherited_from = "openai",
-                endpoint = "https://openrouter.ai/api/v1",
-                api_key_name = "OPENROUTER_API_KEY",
-                model = "deepseek/deepseek-r1:free",
+            ["gemini-chat"] = {
+                __inherited_from = "gemini",
+                model = "gemini-2.0-flash-thinking-exp-01-21",
             },
         },
     },
