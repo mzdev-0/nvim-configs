@@ -40,6 +40,7 @@ return {
                 { name = "codecompanion" }, --llm completions
                 { name = "nvim_lsp" },
                 { name = "luasnip" }, -- snippets
+                { name = "friendly-snippets" }, -- snippets
                 { name = "buffer" }, -- text within current buffer
                 { name = "path" }, -- file system paths
             }),
