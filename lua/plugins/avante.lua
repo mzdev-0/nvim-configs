@@ -7,7 +7,7 @@ return {
         provider = "gemini-chat",
         auto_suggestions_provider = "gemini",
         gemini = {
-            model = "gemini-2.0-flash-thinking-exp-01-21",
+            model = "gemini-2.5-flash-preview-04-17",
             safety_settings = {
                 {
                     category = "HARM_CATEGORY_HARASSMENT",
@@ -34,7 +34,7 @@ return {
         vendors = {
             ["gemini-chat"] = {
                 __inherited_from = "gemini",
-                model = "gemini-2.0-flash-thinking-exp-01-21",
+                model = "gemini-2.5-pro-exp-03-25",
             },
         },
     },
@@ -42,6 +42,7 @@ return {
     build = "make",
     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
     dependencies = {
+        "nvim-treesitter/nvim-treesitter",
         "stevearc/dressing.nvim",
         "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",

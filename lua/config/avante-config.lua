@@ -129,17 +129,18 @@ M._defaults = {
     ---8. minimize_diff                   : Whether to remove unchanged lines when applying a code block
     behaviour = {
         auto_focus_sidebar = true,
-        auto_suggestions = false, -- Experimental stage
+        auto_suggestions = true, -- Experimental stage
         auto_suggestions_respect_ignore = false,
         auto_set_highlight_group = true,
         auto_set_keymaps = true,
         auto_apply_diff_after_generation = false,
         jump_result_buffer_on_finish = false,
-        support_paste_from_clipboard = false,
+        support_paste_from_clipboard = true,
         minimize_diff = true,
+        enable_cursor_planning_mode = true,
     },
     history = {
-        max_tokens = 4096,
+        max_tokens = 900000,
         storage_path = vim.fn.stdpath("state") .. "/avante",
         paste = {
             extension = "png",
@@ -206,7 +207,7 @@ M._defaults = {
         ---@alias AvantePosition "right" | "left" | "top" | "bottom" | "smart"
         position = "right",
         wrap = true, -- similar to vim.o.wrap
-        width = 20, -- default % based on available width in vertical layout
+        width = 25, -- default % based on available width in vertical layout
         height = 30, -- default % based on available height in horizontal layout
         sidebar_header = {
             enabled = true, -- true, false to enable/disable the header
@@ -222,7 +223,7 @@ M._defaults = {
             start_insert = false, -- Start insert mode when opening the edit window
         },
         ask = {
-            floating = false, -- Open the 'AvanteAsk' prompt in a floating window
+            floating = true, -- Open the 'AvanteAsk' prompt in a floating window
             border = "rounded",
             start_insert = true, -- Start insert mode when opening the ask window
             ---@alias AvanteInitialDiff "ours" | "theirs"
