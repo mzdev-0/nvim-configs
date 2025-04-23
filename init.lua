@@ -25,7 +25,7 @@ vim.g.loaded_netrwPlugin = 1
 
 -- General settings
 vim.wo.wrap = true
-vim.wo.relativenumber = false
+vim.wo.relativenumber = true
 vim.wo.number = true
 vim.opt.termguicolors = true
 vim.opt.timeoutlen = 300
