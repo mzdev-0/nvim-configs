@@ -47,6 +47,28 @@ vim.api.nvim_create_autocmd("VimEnter", {
     once = true,
 })
 
+-- Enable LSPs
+vim.lsp.enable({
+    "ansible",
+    "bash",
+    "cpp",
+    "docker-compose",
+    "docker",
+    "gh_actions",
+    "go",
+    "helm",
+    "html",
+    "htmx",
+    "hypr",
+    "lua",
+    "nginx",
+    "powershell",
+    "python",
+    "terraform",
+    "typescript",
+    "yaml",
+})
+
 -- Integrate OSC52 for remote copying
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
