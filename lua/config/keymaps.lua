@@ -1,84 +1,102 @@
-vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = false }) -- Rebinds "jj" to Escape.
-vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true })
--- Window Splitting
-vim.api.nvim_set_keymap("n", "<leader>wv", "<C-w>v", { desc = "Split window vertically" })
-vim.api.nvim_set_keymap("n", "<leader>ws", "<C-w>s", { desc = "Split window horizontally" })
-vim.api.nvim_set_keymap("n", "<leader>we", "<C-w>=", { desc = "Make splits equal size" })
-vim.api.nvim_set_keymap("n", "<leader>wx", "<cmd>close<CR>", { desc = "Close current split" })
+vim.api.nvim_set_keymap("i", "jj", "<esc>", { noremap = false }) -- rebinds "jj" to escape.
+vim.api.nvim_set_keymap("i", "jk", "<esc>", { noremap = true })
 
--- Window navigation
-vim.keymap.set("n", "<leader>ww", "<C-w>w", { desc = "Cycle windows" })
-vim.keymap.set("n", "<leader>wh", "<C-w>h", { desc = "Window left" })
-vim.keymap.set("n", "<leader>wj", "<C-w>j", { desc = "Window down" })
-vim.keymap.set("n", "<leader>wk", "<C-w>k", { desc = "Window up" })
-vim.keymap.set("n", "<leader>wl", "<C-w>l", { desc = "Window right" })
+-- window splitting
+vim.api.nvim_set_keymap("n", "<leader>wv", "<c-w>v", { desc = "split window vertically" })
+vim.api.nvim_set_keymap("n", "<leader>ws", "<c-w>s", { desc = "split window horizontally" })
+vim.api.nvim_set_keymap("n", "<leader>we", "<c-w>=", { desc = "make splits equal size" })
+vim.api.nvim_set_keymap("n", "<leader>wx", "<cmd>close<cr>", { desc = "close current split" })
 
-------- Obsidian
-vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Open Obsidian Template Picker" })
-vim.keymap.set("n", "<leader>of", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Open Obsidian Quick Switcher" })
-vim.keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { desc = "Open Obsidian String Search" })
-vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianFollowLink<CR>", { desc = "Follows Link under Cursor" })
-vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Open Backlinks Picker" })
-vim.keymap.set("n", "<leader>ol", "<cmd>ObsidianLink<CR>", { desc = "Links selected text to a note" })
-vim.keymap.set("n", "<leader>oe", "<cmd>ObsidianExtractNote<CR>", { desc = "Extracts selected text into new note" })
+-- resize window using <ctrl> arrow keys
+--map("n", "<c-up>", "<cmd>resize +2<cr>", { desc = "increase window height" })
+--map("n", "<c-down>", "<cmd>resize -2<cr>", { desc = "decrease window height" })
+--map("n", "<c-left>", "<cmd>vertical resize -2<cr>", { desc = "decrease window width" })
+--map("n", "<c-right>", "<cmd>vertical resize +2<cr>", { desc = "increase window width" })
 
-------- Molten (Jupyter)
-vim.keymap.set("n", "<leader>mi", ":MoltenInit<CR>")
-vim.keymap.set("n", "<leader>mh", ":MoltenHideOutput<CR>")
+-- move lines
+--map("n", "<a-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "move down" })
+--map("n", "<a-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "move up" })
+--map("i", "<a-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "move down" })
+--map("i", "<a-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "move up" })
+--map("v", "<a-j>", ":<c-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "move down" })
+--map("v", "<a-k>", ":<c-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "move up" })
+
+-- window navigation, <ctrl> hjkl
+vim.keymap.set("n", "<leader>ww", "<c-w>w", { desc = "cycle windows" })
+vim.keymap.set("n", "<leader>wh", "<c-w>h", { desc = "window left" })
+vim.keymap.set("n", "<leader>wj", "<c-w>j", { desc = "window down" })
+vim.keymap.set("n", "<leader>wk", "<c-w>k", { desc = "window up" })
+vim.keymap.set("n", "<leader>wl", "<c-w>l", { desc = "window right" })
+
+------- obsidian
+vim.keymap.set("n", "<leader>ot", "<cmd>obsidiantemplate<cr>", { desc = "open obsidian template picker" })
+vim.keymap.set("n", "<leader>of", "<cmd>obsidianquickswitch<cr>", { desc = "open obsidian quick switcher" })
+vim.keymap.set("n", "<leader>os", "<cmd>obsidiansearch<cr>", { desc = "open obsidian string search" })
+vim.keymap.set("n", "<leader>oo", "<cmd>obsidianfollowlink<cr>", { desc = "follows link under cursor" })
+vim.keymap.set("n", "<leader>ob", "<cmd>obsidianbacklinks<cr>", { desc = "open backlinks picker" })
+vim.keymap.set("n", "<leader>ol", "<cmd>obsidianlink<cr>", { desc = "links selected text to a note" })
+vim.keymap.set("n", "<leader>oe", "<cmd>obsidianextractnote<cr>", { desc = "extracts selected text into new note" })
+
+------- molten (jupyter)
+vim.keymap.set("n", "<leader>mi", ":molteninit<cr>")
+vim.keymap.set("n", "<leader>mh", ":moltenhideoutput<cr>")
 vim.keymap.set(
     "v",
     "<leader>mv",
-    ":<C-u>MoltenEvaluateVisual<CR>",
+    ":<c-u>moltenevaluatevisual<cr>",
     { silent = true, desc = "evaluate visual selection" }
 )
-vim.keymap.set("n", "<leader>mr", ":MoltenReevaluateCell<CR>", { silent = true, desc = "re-evaluate cell" })
-vim.keymap.set("n", "<leader>mo", ":MoltenShowOutput<CR>", { silent = true, desc = "show output" })
-vim.keymap.set("n", "<leader>mo", ":MoltenEvaluateOperator<CR>", { silent = true, desc = "run operator selection" })
-vim.keymap.set("n", "<leader>me", ":MoltenEvaluateLine<CR>", { silent = true, desc = "evaluate line" })
+vim.keymap.set("n", "<leader>mr", ":moltenreevaluatecell<cr>", { silent = true, desc = "re-evaluate cell" })
+vim.keymap.set("n", "<leader>mo", ":moltenshowoutput<cr>", { silent = true, desc = "show output" })
+vim.keymap.set("n", "<leader>mo", ":moltenevaluateoperator<cr>", { silent = true, desc = "run operator selection" })
+vim.keymap.set("n", "<leader>me", ":moltenevaluateline<cr>", { silent = true, desc = "evaluate line" })
 
--- Modified keymaps without the helper
-vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+-- modified up down left right keymaps without the helper
+vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "down", expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "<down>", "v:count == 0 ? 'gj' : 'j'", { desc = "down", expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "up", expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "<up>", "v:count == 0 ? 'gk' : 'k'", { desc = "up", expr = true, silent = true })
 
--- Move Lines
-vim.keymap.set("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
-vim.keymap.set("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
-vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-vim.keymap.set("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
-vim.keymap.set("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
+-- move lines
+vim.keymap.set("n", "<a-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "move down" })
+vim.keymap.set("n", "<a-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "move up" })
+vim.keymap.set("i", "<a-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "move down" })
+vim.keymap.set("i", "<a-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "move up" })
+vim.keymap.set("v", "<a-j>", ":<c-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "move down" })
+vim.keymap.set("v", "<a-k>", ":<c-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "move up" })
 
 -- buffers
-vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-vim.keymap.set("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
-vim.keymap.set("n", "<leader>bo", "<cmd>%bd|e#|bd#<cr>", { desc = "Delete Other Buffers" })
+vim.keymap.set("n", "<s-h>", "<cmd>bprevious<cr>", { desc = "prev buffer" })
+vim.keymap.set("n", "<s-l>", "<cmd>bnext<cr>", { desc = "next buffer" })
+
+vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "prev buffer" })
+vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "next buffer" })
+
+vim.keymap.set("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "next buffer" })
+vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "prev buffer" })
+
+vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "switch to other buffer" })
+vim.keymap.set("n", "<leader>`", "<cmd>e #<cr>", { desc = "switch to other buffer" })
+
+vim.keymap.set("n", "<leader>bd", function()
+    Snacks.bufdelete()
+end, { desc = "Delete Buffer" })
+
+vim.keymap.set("n", "<leader>bo", function()
+    Snacks.bufdelete.other()
+end, { desc = "Delete Other Buffers" })
 
 vim.keymap.set("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
---vim.keymap.set({ "i", "n", "s" }, "<esc>", function()
---  vim.cmd("noh")
---  require('cmp').close()  -- Using nvim-cmp's native close
---  return "<esc>"
---end, { expr = true, desc = "Escape and Clear hlsearch" })
-
--- Clear search, diff update and redraw
--- taken from runtime/lua/_editor.lua
+--- clear highlighted search terms
 vim.keymap.set(
     "n",
     "<leader>ur",
     "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-    { desc = "Redraw / Clear hlsearch / Diff Update" }
+    { desc = "UI Redraw / Clear Highlights / Clear hlsearch / Diff Update" }
 )
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
 vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
 vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
 vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
@@ -97,8 +115,8 @@ vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Sav
 vim.keymap.set("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
 -- better indenting
-vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv")
 
 -- commenting
 vim.keymap.set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
@@ -129,8 +147,7 @@ local diagnostic_goto = function(next, severity)
         go({ severity = severity })
     end
 end
-vim.keymap.set("n", "<leader>cd", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "Document Diagnostics" })
-vim.keymap.set("n", "<leader>ud", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Workspace Diagnostics" })
+vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 vim.keymap.set("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 vim.keymap.set("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
@@ -144,20 +161,33 @@ vim.keymap.set("n", "<leader>gb", function()
     require("gitsigns").blame_line({ full = true })
 end, { desc = "Git Blame Line" })
 
--- Toggle Options
-local toggles = {
-    s = { opt = "spell", name = "Spelling" },
-    w = { opt = "wrap", name = "Wrap" },
-    L = { opt = "relativenumber", name = "Relative Number" },
-    l = { opt = "number", name = "Line Numbers" },
-}
-
-for key, t in pairs(toggles) do
-    vim.keymap.set("n", "<leader>u" .. key, function()
-        vim.o[t.opt] = not vim.o[t.opt]
-        vim.notify(t.name .. " " .. (vim.o[t.opt] and "ON" or "OFF"))
-    end, { desc = t.name })
+-- lazygit
+if vim.fn.executable("lazygit") == 1 then
+    vim.keymap.set("n", "<leader>gg", function()
+        Snacks.lazygit()
+    end, { desc = "Lazygit (cwd)" })
+    vim.keymap.set("n", "<leader>gf", function()
+        Snacks.picker.git_log_file()
+    end, { desc = "Git Current File History" })
+    vim.keymap.set("n", "<leader>gL", function()
+        Snacks.picker.git_log()
+    end, { desc = "Git Log (cwd)" })
 end
+
+vim.keymap.set("n", "<leader>gb", function()
+    Snacks.picker.git_log_line()
+end, { desc = "Git Blame Line" })
+vim.keymap.set({ "n", "x" }, "<leader>gB", function()
+    Snacks.gitbrowse()
+end, { desc = "Git Browse (open)" })
+vim.keymap.set({ "n", "x" }, "<leader>gY", function()
+    Snacks.gitbrowse({
+        open = function(url)
+            vim.fn.setreg("+", url)
+        end,
+        notify = false,
+    })
+end, { desc = "Git Browse (copy)" })
 
 -- quit
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
@@ -166,13 +196,10 @@ vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 vim.keymap.set("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 vim.keymap.set("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
--- LazyVim Changelog
-vim.keymap.set("n", "<leader>L", function()
-    LazyVim.news.changelog()
-end, { desc = "LazyVim Changelog" })
-
--- Terminal
-vim.keymap.set("n", "<leader>ft", "<cmd>split | terminal<cr>", { desc = "Open Terminal" })
+-- floating terminal
+vim.keymap.set("n", "<leader>ft", function()
+    Snacks.terminal()
+end, { desc = "Terminal (cwd)" })
 
 -- Terminal Mappings
 vim.keymap.set("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
@@ -218,3 +245,22 @@ vim.keymap.set("n", "<leader>un", "<cmd>Noice dismiss<cr>", { desc = "Dismiss No
 vim.keymap.set({ "x", "o" }, "a", function()
     require("mini.ai").find_textobj()
 end, { desc = "Mini.ai text object" })
+
+-- LSP
+
+vim.keymap.set("n", "<leader>cR", function()
+    Snacks.rename.rename_file()
+end, { desc = "Rename File", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename", silent = true, noremap = true })
+vim.keymap.set("n", "]]", function()
+    Snacks.words.jump(vim.v.count1)
+end, { desc = "Next Reference", silent = true, noremap = true })
+vim.keymap.set("n", "[[", function()
+    Snacks.words.jump(-vim.v.count1)
+end, { desc = "Prev Reference", silent = true, noremap = true })
+vim.keymap.set("n", "<a-n>", function()
+    Snacks.words.jump(vim.v.count1, true)
+end, { desc = "Next Reference", silent = true, noremap = true })
+vim.keymap.set("n", "<a-p>", function()
+    Snacks.words.jump(-vim.v.count1, true)
+end, { desc = "Prev Reference", silent = true, noremap = true })
